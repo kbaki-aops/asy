@@ -53,7 +53,7 @@ pair bisectorpoint(pair A ... pair[] BC)
 	{  
 		B=BC[0];  
 		C=BC[1];  
-		P=unit(midpoint((unit(A-B)+B)--(unit(C-B)+B))-B)+B; 
+		P=unit(midpoint((unit(A-B)+B)-- (unit(C-B)+B))-B)+B;
 	} 
 	return P;
 }

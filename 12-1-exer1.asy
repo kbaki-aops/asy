@@ -1,22 +1,30 @@
 import spgeo;
 
-unitsize(2cm);
-
 draw(unitcircle);
 
-pair A,B,C,D;
-A = dir(120);
-B = dir(42);
-C = dir(238);
-D = dir(degrees(A)+180);
+pair A,B,C;
 
-dot("$A$", A, NW);
-dot("$B$", B, NE);
-dot("$C$", C, SW);
-dot("$D$", D, SE);
+A = W;
+B = dir(180-2degrees(acos(3/5)));
+C = E;
 
-draw(A--C--D--B--A--D);
-draw(rightanglemark(A,C,D));
-markangle(B,D,A, radius=15);
-label("$39^\circ$", D, 7dir(97.5));
-label("$?$", A, 4dir(-33.75));
+//draw(A--C, blue+1);
+
+//draw(arc(O, 1, degrees(A), degrees(C)+360));
+
+dot("$A$", A, W);
+dot("$B$", B, N);
+dot("$C$", C, E);
+draw(rightanglemark(C,B,A, 5));
+
+draw(A--B--C);
+draw(A--C);
+
+label("$6$", B--C);
+label("$8$", B--A);
+//label("$5$", A--O, blue);
+//label("$5$", O--C, blue);
+label("$10$", A--C);
+//label("$180^\circ$", S, S);
+
+//dot("$O$", O, S, blue);
