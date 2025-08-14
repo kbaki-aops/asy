@@ -13,3 +13,4 @@ draw(P--Q);
 label("$\ell$", B, B-A);
 label("$P$", P, P-Q);
 label("$Q$", Q, Q-P);
+
