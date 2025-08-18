@@ -10,7 +10,7 @@ pair Q = dir(220);
 draw(A--B);
 draw(P--Q);
 
-label("$\ell$", B, B-A);
+label("$A$", A, A-B);
+label("$B$", B, B-A);
 label("$P$", P, P-Q);
 label("$Q$", Q, Q-P);
-

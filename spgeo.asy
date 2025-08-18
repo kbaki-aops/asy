@@ -24,6 +24,14 @@ arrowbar parallel(pen p=currentpen, arrowhead arrowhead=SimpleHead) {
 
 arrowbar parallel = parallel();
 
+real operator cast(bool b) {
+  return b ? 1 : 0;
+}
+
+int operator cast(bool b) {
+  return b ? 1 : 0;
+}
+
 real mean(real a, real b) {
   return (a+b)/2;
 }
@@ -57,22 +65,28 @@ pair randdir2(... real[] quadrants) {
   return randdir(window=45 ... quadrants);
 }
 
-path fourwinkle(real a, real b, real c) {
-  return O--dir(a)--extension(dir(a), dir(a)+dir(b-(180-a)), E, E+dir(180-(360-a-b-c)))--E--cycle;
+// todo: deprecate
+// path fourwinkle(real a, real b, real c) {
+//   return O--dir(a)--extension(dir(a), dir(a)+dir(b-(180-a)), E, E+dir(180-(360-a-b-c)))--E--cycle;
+// }
+
+pair middir(pair A, pair B, pair C) {
+  return -dir(mean(degrees(B-A), degrees(B-C)));
 }
 
-void labelarc(pair a, pair b, Label L="$"+(string)round((degrees(b)-degrees(a))%360)+"^\circ$") {
-  if (degrees(a) > degrees(b)) {
-    label(L,
-      dir(mean(degrees(a)-360, degrees(b))),
-      dir(mean(degrees(a)-360, degrees(b)))
-    );
-  } else {
-    label(L,
-      dir(mean(degrees(a), degrees(b))),
-      dir(mean(degrees(a), degrees(b)))
-    );
-  }
+real angle(pair A, pair B, pair C) {
+  return degrees(acos(dot(A-B, C-B)/(length(A-B)*length(C-B))));
+}
+
+void labelarc(pair a, pair b, Label L="$"+(string)round((degrees(b)-degrees(a))%360)+"^\circ$", bool outside=true) {
+  label(L,
+    dir(mean(degrees(a)-360*(degrees(a)>degrees(b)), degrees(b))),
+    (2*outside-1)*dir(mean(degrees(a)-360*(degrees(a)>degrees(b)), degrees(b)))
+  );
+}
+
+void labelangle(pair A, pair B, pair C, Label L="$"+(string)(angle(A,B,C))+"^\circ$", real distance=3) {
+  label(L, B, distance*middir(A,B,C));
 }
 
 pair center(path c) {
@@ -99,6 +113,7 @@ Label underbrace(picture p=currentpicture, real l, string s="") {
   return "$\underbrace{\hspace{"+(string)tocm(p, l)+"cm}}_{\textstyle\text{"+s+"}}$";
 }
 
-real angle(pair A, pair B, pair C) {
-  return degrees(acos(dot(A-B, C-B)/(length(A-B)*length(C-B))));
+// Returns the third angle of a triangle with angles `a` and `b`.
+real third(real a, real b) {
+  return 180-a-b;
 }
