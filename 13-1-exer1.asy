@@ -1,4 +1,4 @@
-import spgeo;
+import "/Users/klausbaki/asy/spgeo.asy" as spgeo;
 
 
 pair A = dir(150);

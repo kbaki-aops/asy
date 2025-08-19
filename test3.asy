@@ -1,3 +1,4 @@
-import spgeo;
+size(300);
 
-draw(unitcircle);
+for (int i: sequence(2))
+  draw(shift(i*E)*unitcircle);
