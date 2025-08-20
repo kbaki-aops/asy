@@ -1,8 +1,8 @@
 import spgeo;
 
 pair P = dir(120);
-pair A = P+4/4*dir(degrees(P)+90);
-pair B = P+4/4*dir(degrees(P)-90);
+pair A = P+3/4*dir(degrees(P)+90);
+pair B = P+4/3*dir(degrees(P)-90);
 
 draw(unitcircle);
 draw(A--B);
@@ -11,5 +11,5 @@ draw(O--P);
 
 dot("$O$", O, unit(-P));
 label("$P$", P, unit(P));
-label("$A$", A, unit(A-B));
-label("$B$", B, unit(B-A));
+dot("$A$", A, unit(A-B));
+dot("$B$", B, unit(B-A));

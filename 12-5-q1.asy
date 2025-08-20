@@ -12,18 +12,21 @@ draw(P--Q);
 draw(unitcircle);
 draw(A--B);
 
-//iteration 0+
+//iteration 0
 dot("$O$", O, SW);
-label("$A$", A, unit(A-B));
-label("$B$", B, unit(B-A));
+dot("$A$", A, unit(A-B));
+dot("$B$", B, unit(B-A));
 label("$P$", P, unit(P-Q));
 label("$Q$", Q, unit(Q-P));
 labelarc(Q, P);
 
 //iteration 1
-//draw(P--R);
-//markrightangle(R,P,B, 8);
-//label("$R$", R, unit(R-P));
+draw(P--O);
+markrightangle(R,P,B, 8);
 
 //iteration 2
-label("$"+(string)angle(Q,P,B)+"^\circ$", P, 3middir(Q,P,B));
+draw(O--R);
+label("$R$", R, unit(R-P));
+
+//iteration 3
+//label("$"+(string)angle(Q,P,B)+"^\circ$", P, 3middir(Q,P,B));
