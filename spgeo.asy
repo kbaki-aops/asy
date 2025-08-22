@@ -7,8 +7,10 @@ texpreamble("\newcommand{\arc}{\text{arc}\ }");
 unitsize(2cm);
 
 pair O = (0,0);
+pen em = linewidth(1);
 pen color1 = red;
 pen color2 = blue;
+pen color3 = olive;
 pen randpen = RGB(floor(256*unitrand()), floor(256*unitrand()), floor(256*unitrand()));
 
 dotted = linetype(new real[] {0,2});
@@ -23,6 +25,14 @@ arrowbar parallel(pen p=currentpen, arrowhead arrowhead=SimpleHead) {
 }
 
 arrowbar parallel = parallel();
+
+guide empathise(... pair[] pp) {
+  if (pp.length > 1) {
+    return pp[0]--empathise(...pp[1:]);
+  } else {
+    return pp[0];
+  }
+}
 
 real operator cast(bool b) {
   return b ? 1 : 0;
@@ -117,3 +127,15 @@ Label underbrace(picture p=currentpicture, real l, string s="") {
 real third(real a, real b) {
   return 180-a-b;
 }
+
+//pair center(path c) {
+//  return midpoint(point(c, 0)--midpoint(c));
+//}
+//
+//real radius(path c) {
+//  return length(center(c)-point(c, 0));
+//}
+
+//pair tangentpoint(pair P, path c, int which=0) {
+//  return tangents(circle((point) center(c), radius(c)), P)[which].B;
+//}
